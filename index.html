@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelajaran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Form Dokumentasi Pembelajaran</h1>
+        <form id="feedbackForm">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" placeholder="Masukkan nama Anda" required>
+
+            <label for="date">Tanggal:</label>
+            <input type="date" id="date" required>
+
+            <label for="lego">Lego yang digunakan:</label>
+            <input type="text" id="lego" placeholder="Masukkan jenis Lego" required>
+
+            <label for="materi">Materi yang diajarkan hari ini:</label>
+            <textarea id="materi" rows="3" placeholder="Masukkan materi yang diajarkan" required></textarea>
+
+            <label for="feedback">Feedback:</label>
+            <textarea id="feedback" rows="5" placeholder="Masukkan feedback Anda" required></textarea>
+
+            <button type="submit">Kirim Pesan</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value || '-';
+            const date = document.getElementById('date').value || '-';
+            const lego = document.getElementById('lego').value || '-';
+            const materi = document.getElementById('materi').value || '-';
+            const feedback = document.getElementById('feedback').value || '-';
+
+            // Buat pesan untuk WhatsApp
+            const message = `Assalamualaikum Bunda%0A%0A` +
+                            `Berikut dokumentasi dan feedback pembelajaran%0A` +
+                            `Nama: ${name}%0A` +
+                            `Tanggal: ${date}%0A` +
+                            `Lego yang digunakan: ${lego}%0A` +
+                            `Materi yang diajarkan hari ini:%0A${materi}%0A` +
+                            `Feedback:%0A${feedback}`;
+
+            // Ganti dengan nomor telepon anggota grup
+            const phoneNumber = '6282157088989'; // Ganti dengan nomor anggota grup yang sesuai
+            const url = `https://wa.me/${phoneNumber}?text=${message}`;
+
+            // Buka link WhatsApp
+            window.open(url, '_blank');
+        });
+    </script>
+</body>
+</html>
